@@ -1,21 +1,22 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "WolverineEats",
-    "version": "0.2",
+    "version": "0.3",
     "description": "Check the menu of UMich Dining",
     "author": "zelongjiang<zelong@umich.edu>",
-    "browser_action": {
+    "action": {
         "default_icon": "sausage.png"
     },
     "background": {
-        "scripts": [
-            "/background.js"
-        ]
+        "service_worker": "/background.js",
+        "type": "module"
     },
     "devtools_page": "devtools.html",
     "permissions": [
         "storage",
-        "tabs",
+        "tabs"
+    ],
+    "host_permissions": [
         "https://dining.umich.edu/menus-locations/dining-halls/*"
     ]
 }
