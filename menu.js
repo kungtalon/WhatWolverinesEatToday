@@ -10,8 +10,18 @@ function readMenu(doc, mealTime) {
     } else {
         console.error("Wrong Meal Time!")
     }
-    let meals =
-        doc.getElementsByClassName("courses")[courseId].querySelectorAll(".courses_wrapper > li")
+
+    try {
+        var meals = (
+            doc.getElementsByClassName("courses")[courseId]
+                .querySelectorAll(".courses_wrapper > li")
+        )
+    } catch (e) {
+        console.error(`Getting error when parsing menu: "\n`, e,
+            `"\nCurrent mealTime: ${mealTime}`)
+        return []
+    }
+
 
     let signatures = Array.from(meals).filter(items => {
         let collection = items.getElementsByTagName("h4")[0].textContent.toLowerCase()
